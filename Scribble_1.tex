@@ -58,4 +58,50 @@ Rewriting the integral:
     ^{\int_0^{\ln(\frac{4!-\sqrt{9}}{(2!)^{2!+2!}})^{-1}}\int_0^1\frac{2w^2-4w-16}{w^3-64}dw\ dy}
     \sum_{k=1}^{\infty}(\lim_{n\to\infty}\int_1^n\frac{\tan\frac{3\pi}{4}}{x^2}dx)^k(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k}dx
 \]
+Evaluating the upper limit:
+\[
+\int_0^{\ln(\frac{4!-\sqrt{9}}{(2!)^{2!+2!}})^{-1}}\int_0^1\frac{2w^2-4w-16}{w^3-64}dw\ dy
+\]
+Evaluate the logarithm in the upper limit of the first integral:
+\[
+\ln(\frac{4!-\sqrt{9}}{(2!)^{2!+2!}})^{-1}=\ln(\frac{24-3}{2^{2+2}})^{-1}=\ln(\frac{21}{16})^{-1}
+\]
+Rewriting:
+\[
+\int_0^{\ln(\frac{21}{16})^{-1}}\int_0^1\frac{2w^2-4w-16}{w^3-64}dw\ dy
+\]
+Simplifying the integrand:
+\[
+\frac{2w^2-4w-16}{w^3-64}=\frac{(w-4)(2w+4)}{(w-4)(w^2+4w+16)}=\frac{2w+4}{w^2+4w+16}
+\]
+Using a u-substitution:
+\[
+u = w^2+4w+16,\ \frac{du}{dw} = 2w + 4,\ du=(2w+4)dw
+\]
+Modifying the limits:
+\[
+@w=1,\ u=1+4+16=21,\ @w=0,\ u=0+0+16=16
+\]
+Rewriting the inner integral:
+\[
+\int_{16}^{21}\frac{1}{u}du
+\]
+Integrating:
+\[
+[\ln|u|]^{21}_{16} = \ln(21)-\ln(16) = \ln(\frac{21}{16})
+\]
+The outer integral:
+\[
+\int_0^{\ln(\frac{21}{16})^{-1}}\ln(\frac{21}{16})dy
+\]
+Integrate and evaluate:
+\[
+[y\ln(\frac{21}{16})]^{\ln(\frac{21}{16})^{-1}}_0 = \ln(\frac{21}{16})\ln(\frac{21}{16})^{-1} - 0 = 1-0 = 1
+\]
+Rewriting the entire integral:
+\[
+    \int
+    _0^1
+    \sum_{k=1}^{\infty}(\lim_{n\to\infty}\int_1^n\frac{\tan\frac{3\pi}{4}}{x^2}dx)^k(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k}dx
+\]
 \end{document}
