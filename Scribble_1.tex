@@ -11,7 +11,7 @@ The scribble is as follows:
     _{\frac{\lim_{u\to\infty}(1+\frac{1}{u})^u}
     {\lim_{u\to\infty}(\frac{e^u+2u^2-1}{4u^4-1})}}
     ^{\int_0^{\ln(\frac{4!-\sqrt{9}}{(2!)^{2!+2!}})^{-1}}\int_0^1\frac{2w^2-4w-16}{w^3-64}dw\ dy}
-    \sum_{k=1}^{\infty}(\lim_{n\to\infty}\int_1^n\frac{\tan\frac{3\pi}{4}}{x^2}dx)^k(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k}dx
+    \sum_{k=1}^{\infty}((\lim_{n\to\infty}\int_1^n\frac{\tan\frac{3\pi}{4}}{x^2}dx)^k(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k})dx
 \]
 Evaluating the lower limit, starting with the numerator:
 \[
@@ -43,7 +43,7 @@ f^{(4)}(u) = e^u,\ g^{(4)}(u) = 96
 \]
 Evaluating the limit:
 \[
-\lim_{u\to\infty}(\frac{e^u}{96})=\frac{e^{\infty}}{96} = \infty
+\lim_{u\to\infty}(\frac{e^u}{96}) = \infty
 \]
 Fully evaluating the lower limit:
 \[
@@ -56,7 +56,7 @@ Rewriting the integral:
     \int
     _0
     ^{\int_0^{\ln(\frac{4!-\sqrt{9}}{(2!)^{2!+2!}})^{-1}}\int_0^1\frac{2w^2-4w-16}{w^3-64}dw\ dy}
-    \sum_{k=1}^{\infty}(\lim_{n\to\infty}\int_1^n\frac{\tan\frac{3\pi}{4}}{x^2}dx)^k(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k}dx
+    \sum_{k=1}^{\infty}((\lim_{n\to\infty}\int_1^n\frac{\tan\frac{3\pi}{4}}{x^2}dx)^k(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k})dx
 \]
 Evaluating the upper limit:
 \[
@@ -102,6 +102,84 @@ Rewriting the entire integral:
 \[
     \int
     _0^1
-    \sum_{k=1}^{\infty}(\lim_{n\to\infty}\int_1^n\frac{\tan\frac{3\pi}{4}}{x^2}dx)^k(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k}dx
+    \sum_{k=1}^{\infty}((\lim_{n\to\infty}\int_1^n\frac{\tan\frac{3\pi}{4}}{x^2}dx)^k(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k})dx
+\]
+Evaluating the first part of the sum:
+\[
+(\lim_{n\to\infty}\int_1^n\frac{\tan\frac{3\pi}{4}}{x^2}dx)^k
+\]
+Simplify the integrand:
+\[
+\tan\frac{3\pi}{4}=-1,\ \frac{1}{x^2}=x^{-2}
+\]
+\[
+(\lim_{n\to\infty}\int_1^n -x^{-2}dx)^k
+\]
+Integrate and evaluate:
+\[
+[\frac{1}{x}]^{\infty}_{1} = \frac{1}{\infty} - 1 = 0 - 1 = -1
+\]
+Therefore this part of the sum is:
+\[
+(-1)^k
+\]
+Rewriting the full integral:
+\[
+    \int
+    _0^1
+    \sum_{k=1}^{\infty}((-1)^k(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k})dx
+\]
+Evaluate the second part of the sum:
+\[
+(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k}
+\]
+Using the Fundamental Theorem of Calculus:
+\[
+\text{If }f\in([a,b]),\ \text{then } \frac{d}{dx}\int_a^x f(t)dt=f(x)
+\]
+Therefore:
+\[
+(\frac{d}{dx}\int_{68!}^{x}t\ dt)^{2k}=x^{2k}
+\]
+Rewriting the full integral:
+\[
+    \int
+    _0^1
+    \sum_{k=1}^{\infty}((-1)^k x^{2k})dx
+\]
+Evalutating the sum:
+\[
+\sum_{k=1}^{\infty}((-1)^k x^{2k})=\sum_{k=1}^{\infty}(-1)^k(x^2)^k=\sum_{k=1}^{\infty}(-x^2)^k
+\]
+Using the infinite summation formula:
+\[
+\sum_{k=1}^{\infty}(r^k)=\frac{r}{1-r},\ |r|<1
+\]
+Therefore:
+\[
+|-x^2|<1,\ x^2<1,\ x<1
+\]
+As the integral is over $x\in [0,1]$, converges for $x\in [0,1)$, and the integral when $x=1$ 
+has width $0$, so doesn't affect the integral, we can use the infinite summation formula. Therefore, the integral rewrites as:
+\[
+\int_0^1\frac{-x^2}{1+x^2}dx
+\]
+Pulling out the minus sign and breaking down the factors:
+\[
+\int_0^1-\frac{1+x^2-1}{1+x^2}dx=
+-(\int_0^1\frac{1+x^2}{1+x^2}-\frac{1}{1+x^2}dx)=
+-(\int_0^1 1 dx - \int_0^1 \frac{1}{1+x^2}dx )
+\]
+Multiplying throughout by -1:
+\[
+\int_0^1\frac{1}{1+x^2}dx - \int_0^1 1dx
+\]
+Integrating:
+\[
+[\arctan(x)-x]_0^1
+\]
+Evaluate:
+\[
+[(\arctan(1)-1)-(\arctan(0)-0)] = [(\frac{\pi}{4}-1)-(0-0)]=\frac{\pi}{4}-1
 \]
 \end{document}
